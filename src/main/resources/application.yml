@@ -1,2 +1,20 @@
+server:
+  port: 8080
+
 kafka:
-  bootstrap-servers: localhost:9092
+  bootstrap-servers: kafka:9092
+
+spring:
+  main:
+    web-application-type: none
+  jmx:
+    enabled: true
+
+management:
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: "*"

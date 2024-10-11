@@ -15,7 +15,6 @@
 	<groupId>kafka-fundamentals</groupId>
 	<artifactId>kafka-unit-test</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-
 	<name>kafka-unit-test</name>
 	<description>Kafka Unit Test</description>
 
@@ -51,6 +50,19 @@
 			<artifactId>spring-boot-docker-compose</artifactId>
 			<scope>runtime</scope>
 			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>io.micrometer</groupId>
+			<artifactId>micrometer-registry-prometheus</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>io.micrometer</groupId>
+			<artifactId>micrometer-registry-jmx</artifactId>
 		</dependency>
 	</dependencies>
 

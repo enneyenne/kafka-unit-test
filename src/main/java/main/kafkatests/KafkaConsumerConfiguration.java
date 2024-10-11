@@ -26,12 +26,15 @@ public class KafkaConsumerConfiguration {
 			ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class,
 			ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
 		return new DefaultKafkaConsumerFactory<>(props);
+
 	}
 
 	@Bean
 	public ConcurrentKafkaListenerContainerFactory<String, String> kafkaListenerContainerFactory() {
 		ConcurrentKafkaListenerContainerFactory<String, String> factory = new ConcurrentKafkaListenerContainerFactory<>();
 		factory.setConsumerFactory(consumerFactory());
+		factory.getContainerProperties().setObservationEnabled(true);
 		return factory;
 	}
+
 }

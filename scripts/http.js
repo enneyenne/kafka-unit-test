@@ -13,22 +13,11 @@ export let options = {
 
 export default function () {
 
-  const url = 'http://host.docker.internal:8080';
-  const data = {id: 12, userId: 22, theme: "t", body: "b"}
+  const url = 'http://host.docker.internal:8080/register';
+  const data = {str: "testRegister"}
 
-  // hello
-  http.get(url);
-
-  // hello name
-  http.get(url + '/hello?name=Eugene');
-
-  // makePost
-   http.get(url, JSON.stringify(data), {
+  http.get(url, JSON.stringify(data), {
       headers: { 'Content-Type': 'application/json' },
-   });
-
-   //postId
-  http.get(url + '/post/11');
-  http.get(url + '/post/12');
+  });
 
 };
