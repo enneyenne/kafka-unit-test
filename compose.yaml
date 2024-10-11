@@ -33,7 +33,6 @@ services:
     depends_on:
       - zoo
 
-
   grafana:
     container_name: grafana
     image: grafana/grafana:9.1.8
@@ -71,7 +70,9 @@ services:
     depends_on:
       - kafka
     ports:
-      - "127.0.0.1:8080:8080"
+      - "8080:8080"
+    extra_hosts:
+      - "host.docker.internal:172.19.0.1"
 
   k6:
     container_name: k6
