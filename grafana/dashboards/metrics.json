@@ -86,8 +86,8 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 7,
-        "w": 8,
+        "h": 8,
+        "w": 12,
         "x": 0,
         "y": 0
       },
@@ -95,10 +95,14 @@
       "options": {
         "legend": {
           "calcs": [
-            "last"
+            "min",
+            "max",
+            "mean",
+            "last",
+            "sum"
           ],
           "displayMode": "table",
-          "placement": "bottom",
+          "placement": "right",
           "showLegend": true
         },
         "tooltip": {
@@ -113,13 +117,14 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "expr": "search_time_seconds_count",
-          "legendFormat": "__auto",
+          "expr": "sum by (messaging_source_name)(spring_kafka_listener_seconds_count - spring_kafka_listener_seconds_count offset 1m)",
+          "hide": false,
+          "legendFormat": "topic - {{messaging_source_name}}",
           "range": true,
           "refId": "A"
         }
       ],
-      "title": "search_time",
+      "title": "kafka consume messages 1m",
       "type": "timeseries"
     },
     {
@@ -180,19 +185,23 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 7,
-        "w": 8,
-        "x": 8,
+        "h": 8,
+        "w": 12,
+        "x": 12,
         "y": 0
       },
       "id": 3,
       "options": {
         "legend": {
           "calcs": [
-            "last"
+            "min",
+            "max",
+            "mean",
+            "last",
+            "sum"
           ],
           "displayMode": "table",
-          "placement": "bottom",
+          "placement": "right",
           "showLegend": true
         },
         "tooltip": {
@@ -207,111 +216,17 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "expr": "increase(getpost_count_total[1m])",
-          "legendFormat": "__auto",
+          "expr": "sum by (uri)(http_server_requests_seconds_count{uri !~\"/actuator/prometheus\"} - http_server_requests_seconds_count{uri !~\"/actuator/prometheus\"} offset 1m)",
+          "hide": false,
+          "legendFormat": "uri - {{uri}}",
           "range": true,
           "refId": "A"
         }
       ],
-      "title": "get_post",
-      "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "PBFA97CFB590B2093"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 0,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "lineInterpolation": "smooth",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "never",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 7,
-        "w": 8,
-        "x": 16,
-        "y": 0
-      },
-      "id": 4,
-      "options": {
-        "legend": {
-          "calcs": [
-            "last"
-          ],
-          "displayMode": "table",
-          "placement": "bottom",
-          "showLegend": true
-        },
-        "tooltip": {
-          "mode": "single",
-          "sort": "none"
-        }
-      },
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
-          },
-          "editorMode": "code",
-          "expr": "avg_over_time(testValue[1m])",
-          "legendFormat": "__auto",
-          "range": true,
-          "refId": "A"
-        }
-      ],
-      "title": "test_value",
+      "title": "http requests 1m",
       "type": "timeseries"
     }
   ],
-  "refresh": "1m",
   "schemaVersion": 37,
   "style": "dark",
   "tags": [],
@@ -324,8 +239,8 @@
   },
   "timepicker": {},
   "timezone": "",
-  "title": "Test dashboard",
-  "uid": "qF-AmAkHz",
-  "version": 6,
+  "title": "Kafka",
+  "uid": "V94-skmNk",
+  "version": 2,
   "weekStart": ""
 }

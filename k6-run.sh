@@ -1,1 +1,0 @@
-docker-compose run --rm k6 run /scripts/http.js

@@ -1,1 +1,3 @@
-docker-compose up -d --wait
+```csv
+mvn spring-boot:run
+```

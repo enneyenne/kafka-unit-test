@@ -4,19 +4,27 @@ export let options = {
   scenarios: {
     default: {
       executor: 'constant-arrival-rate',
-      duration: '5s',
-      rate: 2, timeUnit: '1s',
-      preAllocatedVUs: 1
+      rate: 1,
+      timeUnit: '1s',
+      duration: '1m',
+      preAllocatedVUs: 1,
     }
   }
 };
 
 export default function () {
 
-  const url = 'http://host.docker.internal:8080/register';
-  const data = {str: "testRegister"}
+  const urlRegister = 'http://host.docker.internal:8080/register';
+  const urlOnline = 'http://host.docker.internal:8080/online';
 
-  http.get(url, JSON.stringify(data), {
+  const dataRegister = {str: "testRegister"};
+  const dataOnline = {str: "testOnline"};
+
+  http.post(urlRegister, JSON.stringify(dataRegister), {
+      headers: { 'Content-Type': 'application/json' },
+  });
+
+  http.post(urlOnline, JSON.stringify(dataOnline), {
       headers: { 'Content-Type': 'application/json' },
   });
 
